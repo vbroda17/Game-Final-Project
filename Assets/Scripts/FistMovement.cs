@@ -33,31 +33,24 @@ public class FistMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isPunching) // Only allow movement if not currently punching
-        {
-            MoveFist(leftArm, Direction.Left);
-            MoveFist(rightArm, Direction.Right);
-        }
-        CheckPunch();
     }
 
-    void MoveFist(Transform arm, Direction direction)
+    public void MoveFists(Vector3 movement)
+    {
+        if (!isPunching) // Only allow movement if not currently punching
+        {
+            MoveFist(leftArm, Direction.Left, movement);
+            MoveFist(rightArm, Direction.Right, movement);
+        }
+    }
+
+    void MoveFist(Transform arm, Direction direction, Vector3 move)
     {
         Vector3 offset = Vector3.zero;
         if(direction == Direction.Left) offset.x = -.35f;
         if(direction == Direction.Right) offset.x = .35f;
         arm.localPosition = originalPosition + offset;
         
-        Vector3 move = Vector3.zero;
-        if (Input.GetKey("up"))
-            move.y = 1;
-        if (Input.GetKey("down"))
-            move.y = -1;
-        if (Input.GetKey("left"))
-            move.x = -.15f;
-        if (Input.GetKey("right"))
-            move.x = .15f;
-
         Vector3 newPosition = arm.localPosition + move;
 
         newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
@@ -71,15 +64,11 @@ public class FistMovement : MonoBehaviour
         }
     }
 
-    void CheckPunch()
+    public void Punch(Direction direction)
     {
-        if(Input.GetKeyDown("q") && !isPunching) Punch(leftArm);
-        if(Input.GetKeyDown("e") && !isPunching) Punch(rightArm);
-    }
-
-    void Punch(Transform arm)
-    {
-        StartCoroutine(PerformPunch(arm));
+        if(isPunching) return;
+        if(direction == Direction.Left) StartCoroutine(PerformPunch(leftArm));
+        if(direction == Direction.Right) StartCoroutine(PerformPunch(rightArm));
     }
 
     IEnumerator PerformPunch(Transform arm)
