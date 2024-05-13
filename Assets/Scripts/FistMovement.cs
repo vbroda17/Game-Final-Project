@@ -34,6 +34,7 @@ public class FistMovement : MonoBehaviour
     {
         MoveFist(leftArm, Direction.Left);
         MoveFist(rightArm, Direction.Right);
+        CheckPunch();
     }
 
     void MoveFist(Transform arm, Direction direction)
@@ -64,4 +65,42 @@ public class FistMovement : MonoBehaviour
             arm.localPosition = originalPosition + offset;
         }
     }
+
+    void CheckPunch()
+    {
+        if(Input.GetKey("q")) Punch(leftArm);
+        if(Input.GetKey("e")) Punch(rightArm);
+    }
+
+void Punch(Transform arm)
+{
+    // Define punch duration and punch distance
+    float punchDuration = 0.1f;
+    float punchDistance = 0.5f;
+
+    // Store original arm position
+    Vector3 originalPosition = arm.localPosition;
+
+    // Calculate target position for punch
+    Vector3 targetPosition = originalPosition + Vector3.forward * punchDistance;
+
+    // Perform punch animation or action
+    StartCoroutine(PerformPunch(arm, originalPosition, targetPosition, punchDuration));
+}
+
+IEnumerator PerformPunch(Transform arm, Vector3 originalPosition, Vector3 targetPosition, float punchDuration)
+{
+    // Perform punch animation or action
+    float elapsedTime = 0;
+    while (elapsedTime < punchDuration)
+    {
+        arm.localPosition = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / punchDuration);
+        elapsedTime += Time.deltaTime;
+        yield return null; // Wait for the next frame
+    }
+
+    // Return arm to original position
+    arm.localPosition = originalPosition;
+}
+
 }
