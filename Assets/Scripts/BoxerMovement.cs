@@ -11,8 +11,12 @@ public class BoxerMovement : MonoBehaviour
     public float sprintMultiplier = 1.5f;
     public float gravityValue = -9.81f;
     public float jumpHeight = .5f;
+    private bool isRotationTarget;
 
-    void Start(){}
+    void Start()
+    {
+        isRotationTarget = false;
+    }
 
     // Function for handling movement
     public void HandleMovement(Vector3 move, bool isSprinting)
@@ -22,12 +26,41 @@ public class BoxerMovement : MonoBehaviour
 
         controller.Move(move * Time.deltaTime * curSpeed);
 
-        // For rotating the player in the direction of movement
-        if (move != Vector3.zero)
+    }
+
+    // Function to rotate the player towards a direction vector
+    public void RotatePlayerTowardsDirection(Vector3 direction)
+    {
+        if (direction != Vector3.zero)
         {
-            gameObject.transform.forward = move;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Adjust rotation speed as needed
         }
     }
+
+
+    // Function to rotate the player towards a target transform
+    public void RotatePlayerTowardsTarget(Transform target)
+    {
+        if (target != null)
+        {
+            Vector3 direction = target.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Adjust rotation speed as needed
+        }
+    }
+
+    public bool SetIsRotatedTarget()
+    {
+        isRotationTarget = !isRotationTarget;
+        return isRotationTarget;
+    }
+
+    public bool IsRotationTarget()
+    {
+        return isRotationTarget;
+    }
+
 
     // Function for handling jumping
     public void HandleJumping()
