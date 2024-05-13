@@ -1,0 +1,28 @@
+Add enimies
+Add collectables
+Add obsticales to platform on
+
+Add better movement
+Add better camera
+
+Add attack to kill enimies
+
+Add some ai for enimies
+
+############### NEW IDEAS
+Finish fixing hand movements
+- fix offsets
+- make it into a function
+- all right hand functionality
+Add a punching function
+
+Add a health bar
+  - When zero cause person to fall
+  - Require spam of a button to get back up
+
+Add another person to fight
+- add simple ai for it
+
+Add a timer for round and down count
+
+Add animation for walking
