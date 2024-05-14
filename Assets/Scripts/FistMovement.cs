@@ -62,6 +62,10 @@ public class FistMovement : MonoBehaviour
         {
             arm.localPosition = originalPosition + offset;
         }
+
+        Rigidbody armRB = arm.GetComponent<Rigidbody>();
+        armRB.MovePosition(arm.position);
+        armRB.MoveRotation(arm.rotation);
     }
 
     public void Punch(Direction direction)
@@ -75,8 +79,8 @@ public class FistMovement : MonoBehaviour
     {
         isPunching = true; // Set punching flag to true
         // Define punch duration and punch distance
-        float punchDuration = 0.1f;
-        float punchDistance = 0.5f;
+        float punchDuration = 0.5f;
+        float punchDistance = 1f;
         float punchRotation = 90f; // Rotation angle for the punch
 
         // Store original arm position and rotation
