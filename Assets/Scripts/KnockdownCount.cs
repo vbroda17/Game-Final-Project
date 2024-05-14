@@ -54,7 +54,7 @@ public class KnockdownCount : MonoBehaviour
             if (!player.isKnockedDown && !computer.isKnockedDown)
             {
                 countStarted = false;
-                UpdateKnockdownText();
+                knockdownCount.text = "HE'S UP!!";
                 yield break;
             }
             knockdownCount.text = i.ToString();
