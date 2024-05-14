@@ -10,11 +10,6 @@ Add attack to kill enimies
 Add some ai for enimies
 
 ############### NEW IDEAS
-Finish fixing hand movements
-- fix offsets
-- make it into a function
-- all right hand functionality
-Add a punching function
 
 Add a health bar
   - When zero cause person to fall
@@ -22,6 +17,10 @@ Add a health bar
 
 Add another person to fight
 - add simple ai for it
+
+Add camera
+- 2 modes
+  -- rotate around ring,
 
 Add a timer for round and down count
 

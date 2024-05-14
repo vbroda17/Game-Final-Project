@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 20261979}
   - component: {fileID: 20261978}
   - component: {fileID: 20261980}
+  - component: {fileID: 20261981}
   m_Layer: 0
   m_Name: Boxer
   m_TagString: ComputerBoxer
@@ -223,6 +224,18 @@ MonoBehaviour:
   movement: {fileID: 0}
   leftArm: {fileID: 158221165}
   rightArm: {fileID: 1885533285}
+--- !u!114 &20261981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20261976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b84ee1597a3c8f4bbe4f8884ebfb788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &92079124
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +673,7 @@ GameObject:
   - component: {fileID: 303205981}
   m_Layer: 0
   m_Name: Ring
-  m_TagString: Untagged
+  m_TagString: Ring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2549,6 +2562,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2630,6 +2644,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 11.901, y: -71.832, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f360581ead80c40b1fff49957be5f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOffsetY: 2
+  ringRotationSpeed: 1
 --- !u!1 &998144126
 GameObject:
   m_ObjectHideFlags: 0
