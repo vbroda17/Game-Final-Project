@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 20261978}
   - component: {fileID: 20261980}
   - component: {fileID: 20261981}
+  - component: {fileID: 20261982}
   m_Layer: 0
   m_Name: Boxer
   m_TagString: ComputerBoxer
@@ -151,8 +152,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20261976}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.9000001, z: 7.4705}
+  m_LocalRotation: {x: -0.006181962, y: -0, z: -0, w: 0.9999809}
+  m_LocalPosition: {x: 0, y: -0.9006524, z: 7.481949}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -165,7 +166,7 @@ Transform:
   - {fileID: 459080090}
   - {fileID: 745209190}
   m_Father: {fileID: 776256346}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.708, y: 0, z: 0}
 --- !u!114 &20261978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,13 +203,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 4
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &20261980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +239,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 0
-  offset: {x: 0, y: 2, z: 0}
+--- !u!114 &20261982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20261976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f4fed2f15992e40a9496c858f3426a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &92079124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,6 +1302,7 @@ GameObject:
   - component: {fileID: 438605005}
   - component: {fileID: 438605008}
   - component: {fileID: 438605009}
+  - component: {fileID: 438605010}
   m_Layer: 0
   m_Name: Boxer
   m_TagString: PlayerBoxer
@@ -1392,7 +1405,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 0
-  offset: {x: 0, y: 2, z: 0}
 --- !u!114 &438605009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1406,6 +1418,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+--- !u!114 &438605010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438605003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f4fed2f15992e40a9496c858f3426a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &459080089
 GameObject:
   m_ObjectHideFlags: 0
