@@ -8,7 +8,7 @@ public class FistMovement : MonoBehaviour
     public Transform leftArm;
     public Transform rightArm;
 
-    private bool isPunching = false; // Flag to track if the punching animation is playing
+    public bool isPunching = false; // Flag to track if the punching animation is playing
 
     // Define boundaries for arm movement
     private float minX = -0.5f;
@@ -75,50 +75,53 @@ public class FistMovement : MonoBehaviour
         if(direction == Direction.Right) StartCoroutine(PerformPunch(rightArm));
     }
 
-    IEnumerator PerformPunch(Transform arm)
+IEnumerator PerformPunch(Transform arm)
+{
+    isPunching = true; // Set punching flag to true
+
+    // Store original arm position and rotation
+    Vector3 originalPosition = arm.localPosition;
+    Quaternion originalRotation = arm.localRotation;
+
+    // Define punch duration and punch distance
+    float punchDuration = 0.5f;
+    float punchDistance = 1f;
+    float punchRotation = 90f; // Rotation angle for the punch
+
+    // Calculate target position for punch
+    Vector3 targetPosition = originalPosition + Vector3.forward * punchDistance;
+
+    // Calculate target rotation for punch
+    Quaternion targetRotation = Quaternion.Euler(punchRotation, 0, 0);
+
+    // Perform punch animation or action
+    float elapsedTime = 0;
+    while (elapsedTime < punchDuration)
     {
-        isPunching = true; // Set punching flag to true
-        // Define punch duration and punch distance
-        float punchDuration = 0.5f;
-        float punchDistance = 1f;
-        float punchRotation = 90f; // Rotation angle for the punch
+        // Move arm
+        arm.localPosition = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / punchDuration);
+        // Rotate arm
+        arm.localRotation = Quaternion.Slerp(originalRotation, targetRotation, elapsedTime / punchDuration);
 
-        // Store original arm position and rotation
-        Vector3 originalPosition = arm.localPosition;
-        Quaternion originalRotation = arm.localRotation;
-
-        // Calculate target position for punch
-        Vector3 targetPosition = originalPosition + Vector3.forward * punchDistance;
-
-        // Calculate target rotation for punch
-        Quaternion targetRotation = Quaternion.Euler(punchRotation, 0, 0);
-
-        // Perform punch animation or action
-        float elapsedTime = 0;
-        while (elapsedTime < punchDuration)
-        {
-            // Move arm
-            arm.localPosition = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / punchDuration);
-            // Rotate arm
-            arm.localRotation = Quaternion.Slerp(originalRotation, targetRotation, elapsedTime / punchDuration);
-
-            elapsedTime += Time.deltaTime;
-            yield return null; // Wait for the next frame
-        }
-
-        // Smoothly return arm to zero rotation
-        float returnDuration = 0.1f;
-        Quaternion zeroRotation = Quaternion.Euler(0, 0, 0); // Rotation back to zero degrees
-        Quaternion startRotation = arm.localRotation;
-
-        float returnElapsedTime = 0;
-        while (returnElapsedTime < returnDuration)
-        {
-            arm.localRotation = Quaternion.Slerp(startRotation, zeroRotation, returnElapsedTime / returnDuration);
-            returnElapsedTime += Time.deltaTime;
-            yield return null; // Wait for the next frame
-        }
-
-        isPunching = false; // Reset punching flag
+        elapsedTime += Time.deltaTime;
+        yield return null; // Wait for the next frame
     }
+
+    // Smoothly return arm to original position and rotation
+    float returnDuration = 0.5f;
+    float returnElapsedTime = 0;
+    while (returnElapsedTime < returnDuration)
+    {
+        // Move arm back to original position
+        arm.localPosition = Vector3.Lerp(targetPosition, originalPosition, returnElapsedTime / returnDuration);
+        // Rotate arm back to original rotation
+        arm.localRotation = Quaternion.Slerp(targetRotation, originalRotation, returnElapsedTime / returnDuration);
+
+        returnElapsedTime += Time.deltaTime;
+        yield return null; // Wait for the next frame
+    }
+
+    isPunching = false; // Reset punching flag
+}
+
 }

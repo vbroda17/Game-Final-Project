@@ -12,29 +12,35 @@ public class BoxerMovement : MonoBehaviour
     public float gravityValue = -9.81f;
     public float jumpHeight = .5f;
     private bool isRotationTarget;
-
+    private BoxerKnockdown boxerKnockdown;
     void Start()
     {
         isRotationTarget = false;
+        boxerKnockdown = GetComponentInParent<BoxerKnockdown>();
     }
 
     // Function for handling movement
     public void HandleMovement(Vector3 move, bool isSprinting)
     {
-        float curSpeed = playerSpeed;
-        if (isSprinting) curSpeed *= sprintMultiplier;
+        if (!boxerKnockdown.isKnockedDown) // Check if the boxer is not knocked down
+        {
+            float curSpeed = playerSpeed;
+            if (isSprinting) curSpeed *= sprintMultiplier;
 
-        controller.Move(move * Time.deltaTime * curSpeed);
-
+            controller.Move(move * Time.deltaTime * curSpeed);
+        }
     }
 
     // Function to rotate the player towards a direction vector
     public void RotatePlayerTowardsDirection(Vector3 direction)
     {
-        if (direction != Vector3.zero)
+        if (!boxerKnockdown.isKnockedDown) // Check if the boxer is not knocked down
         {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Adjust rotation speed as needed
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Adjust rotation speed as needed
+            }
         }
     }
 
@@ -42,11 +48,14 @@ public class BoxerMovement : MonoBehaviour
     // Function to rotate the player towards a target transform
     public void RotatePlayerTowardsTarget(Transform target)
     {
-        if (target != null)
+        if (!boxerKnockdown.isKnockedDown) // Check if the boxer is not knocked down
         {
-            Vector3 direction = target.position - transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Adjust rotation speed as needed
+            if (target != null)
+            {
+                Vector3 direction = target.position - transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Adjust rotation speed as needed
+            }
         }
     }
 
@@ -65,12 +74,15 @@ public class BoxerMovement : MonoBehaviour
     // Function for handling jumping
     public void HandleJumping()
     {
-        // Jumping
-        if (groundedPlayer)
+        if (!boxerKnockdown.isKnockedDown) // Check if the boxer is not knocked down
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            // Jumping
+            if (groundedPlayer)
+            {
+                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            }
+            controller.Move(playerVelocity * Time.deltaTime);
         }
-        controller.Move(playerVelocity * Time.deltaTime);
     }
 
 // Function for handling gravity
