@@ -8,7 +8,7 @@ public class KnockdownCount : MonoBehaviour
     private BoxerKnockdown player;
     private BoxerKnockdown computer;
     public Text knockdownCount;
-    private bool countStarted = false; // Variable to track if counting has started
+    public bool countStarted = false; // Variable to track if counting has started
     public bool gameOver = false; // Variable to track if counting has started
 
 

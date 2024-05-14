@@ -29,19 +29,10 @@ public class ComputerControl : MonoBehaviour
 
 void ComputerMovement()
 {
-    // // Calculate direction to the player boxer
-    // Vector3 directionToPlayer = opponent.position;
-    // directionToPlayer.y = 0f; // Ignore vertical component
-
-    // // Normalize the direction vector
-    // directionToPlayer.Normalize();
-
-    // // Smoothly rotate towards the player boxer
-    // boxerMovement.RotatePlayerTowardsDirection(directionToPlayer);
-
     // // Move towards the player boxer
     // boxerMovement.HandleMovement(directionToPlayer, false);
-    boxerMovement.MoveTowardsTarget(opponent, boxerMovement.playerSpeed);
+    if(!knockdownCount.countStarted) boxerMovement.MoveTowardsTarget(opponent, boxerMovement.playerSpeed);
+    if(knockdownCount.countStarted) boxerMovement.MoveAwayFromTarget(opponent, boxerMovement.playerSpeed); // I want this to move to the oposite
     boxerMovement.RotatePlayerTowardsTarget(opponent);
 }
 

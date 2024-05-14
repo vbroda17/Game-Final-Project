@@ -43,6 +43,19 @@ public class BoxerMovement : MonoBehaviour
         }
     }
 
+    public void MoveAwayFromTarget(Transform target, float speed)
+    {
+        if (!boxerKnockdown.isKnockedDown) // Check if the boxer is not knocked down
+        {
+            if (target != null)
+            {
+                Vector3 direction = (transform.position - target.position).normalized; // Reversed direction
+                controller.Move(direction * Time.deltaTime * speed);
+            }
+        }
+    }
+
+
     // Function to rotate the player towards a direction vector
     public void RotatePlayerTowardsDirection(Vector3 direction)
     {
