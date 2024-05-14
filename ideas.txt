@@ -11,17 +11,11 @@ Add some ai for enimies
 
 ############### NEW IDEAS
 
-Add a health bar
-  - When zero cause person to fall
-  - Require spam of a button to get back up
 
 Wanted health bar currently dropped
 
 Add another person to fight
 - add simple ai for it
-
-
-Add a timer for round and down count
 
 Add audience
 

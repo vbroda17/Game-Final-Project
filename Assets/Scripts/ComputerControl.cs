@@ -29,18 +29,20 @@ public class ComputerControl : MonoBehaviour
 
 void ComputerMovement()
 {
-    // Calculate direction to the player boxer
-    Vector3 directionToPlayer = opponent.position;
-    directionToPlayer.y = 0f; // Ignore vertical component
+    // // Calculate direction to the player boxer
+    // Vector3 directionToPlayer = opponent.position;
+    // directionToPlayer.y = 0f; // Ignore vertical component
 
-    // Normalize the direction vector
-    directionToPlayer.Normalize();
+    // // Normalize the direction vector
+    // directionToPlayer.Normalize();
 
-    // Smoothly rotate towards the player boxer
-    boxerMovement.RotatePlayerTowardsDirection(directionToPlayer);
+    // // Smoothly rotate towards the player boxer
+    // boxerMovement.RotatePlayerTowardsDirection(directionToPlayer);
 
-    // Move towards the player boxer
-    boxerMovement.HandleMovement(directionToPlayer, false);
+    // // Move towards the player boxer
+    // boxerMovement.HandleMovement(directionToPlayer, false);
+    boxerMovement.MoveTowardsTarget(opponent, boxerMovement.playerSpeed);
+    boxerMovement.RotatePlayerTowardsTarget(opponent);
 }
 
     void ComputerPunch()
