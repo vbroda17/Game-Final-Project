@@ -68,13 +68,13 @@ void ComputerMovement()
         while (!knockdownCount.gameOver)
         {
             // Check if the computer is knocked down and not already getting up
-            if (boxerKnockdown.isKnockedDown)
+            if (boxerKnockdown.isKnockedDown && !knockdownCount.gameOver)
             {
                 // Randomly wait between 0.5 and 2 seconds before attempting to get up
                 float randomWaitTime = Random.Range(0.2f, 2.1f);
                 print(randomWaitTime);
                 yield return new WaitForSeconds(randomWaitTime);
-
+                if(knockdownCount.gameOver) yield break;
                 // Attempt to get up
                 boxerKnockdown.AttemptGetUp();
             }
